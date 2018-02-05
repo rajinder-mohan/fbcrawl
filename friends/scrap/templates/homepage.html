@@ -1,0 +1,111 @@
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>Facebook Scrap</title>
+
+    <!-- Styles -->
+
+    <link href="{% static 'css/core.min.css' %}" rel="stylesheet">
+    <!-- <link href="{% static '/css/thesaas.min.css'  %}" rel="stylesheet"> -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <!-- Favicons -->
+
+    <link rel="icon" href="{% static 'favicon.png' %}">
+
+
+  </head>
+
+  <body>
+
+
+    <!-- Header -->
+    <div class="header">
+
+      <div class="container">
+        <div class="row">
+
+          <div class="col-12 text-center align-self-center">
+            <center>
+              <div class="header-text">
+                <span><img src="{% static 'images/BCM_Logo_v2.png' %}" alt=""></img></span>
+              </div>
+            </center>
+            <form class="form-inline form-glass form-round justify-content-center" action="#" method="" target="_blank">
+              <div class="input-group">
+                {% csrf_token %}
+
+                <input type="text" id="fb_id" class="form-control" placeholder="Enter URL">
+                <span class="input-group-btn">
+                  <input type="button" class="btn btn-lg btn-white" value="Submit" id="sub_fb">
+                  <!-- <button class="btn btn-lg btn-white" id="sub_fb">Submit</button> -->
+                </span>
+              </div>
+            </form>
+            <center>
+              <div class="current">
+                  <span class="current-text">{% now "F j,Y" %}</span>
+              </div>
+              <div class="top-locations">
+                  <span class="top-location-text">Top Locations</span>
+              </div>
+            </center>
+            <div id="result_data" style="text-align:center;">
+              <center>
+              <table border="1">
+                <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Country</th>
+                  <th>Percentage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="3">No result available.</td>
+                </tr>
+              </tbody>
+              </table>
+            </center>
+          </div>
+
+          </div>
+
+          <center>
+          <div id="loading" style="display:none;">
+            <img id="loading-image" src="{% static 'images/loader.gif' %}" alt="Loading..." />
+          </div>
+        </center>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- END Header -->
+
+
+
+  <!-- Scripts -->
+  {% block js %}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+<script type="text/javascript">
+
+var token = "{{csrf_token}}";
+</script>
+<script  type="text/javascript" src="{% static 'js/validation.js' %}"> </script>
+  {% endblock %}
+
+
+</body>
+
+</html>
